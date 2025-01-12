@@ -9,3 +9,11 @@ Parking Lot Management: Handles parking lot capacity, records vehicle entries/ex
 API-Driven Design: Exposes a RESTful API for seamless integration with React-based frontend.
 Scalable Architecture: Modularized for future expansion and ML model integration.
 
+
+Prerequisites
+Python 3.8+
+Django 4.x
+PyTorch
+PostgreSQL
+Node.js (for frontend development)
+Tesseract OCR (optional for enhanced plate recognition)
