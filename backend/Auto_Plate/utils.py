@@ -2,8 +2,9 @@ import re
 from Levenshtein import distance
 
 def preprocess_plate(plate):
-    """Normalize plate by removing spaces and special characters, and converting to uppercase."""
-    return re.sub(r'[^A-Za-z0-9]', '', plate.upper().strip())
+    """Normalize plate by removing special characters (except spaces) and converting to uppercase."""
+    return re.sub(r'[^A-Za-z0-9 ]', '', plate.upper().strip())
+
 
 def find_similar_plates(detected_plate, all_plates, threshold=6):
     detected_plate = preprocess_plate(detected_plate)
