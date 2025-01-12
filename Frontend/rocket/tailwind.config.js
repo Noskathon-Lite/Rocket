@@ -1,11 +1,20 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: 'class', // Enable dark mode with class strategy
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
+        title: ['Rubik Distressed', 'serif'],
+        paragraph: ["Jersey 15", 'serif'],
+      },
+      backgroundColor: {
+        'gray-100': '#f3f4f6',
+      },
+    },
   },
   plugins: [
     require('daisyui'),
