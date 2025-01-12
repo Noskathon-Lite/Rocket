@@ -15,7 +15,7 @@ const Home = () => {
             backgroundPosition: "center",
           }}
         >
-          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <div className="absolute inset-0 bg-black opacity-30"></div>
         </div>
         <div className="w-full h-screen flex items-center justify-center">
           <div className="max-w-[800px] text-center flex flex-col items-center justify-center z-10">
