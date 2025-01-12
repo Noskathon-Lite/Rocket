@@ -38,3 +38,21 @@ python manage.py makemigration
 python manage.py migrate
 Start server with Pycharm or
 python manage.py runserver
+
+Usage
+Key Endpoints
+User Authentication
+POST /api/register/ - Register a new user.
+POST /api/login/ - Login with credentials.
+License Plate Operations
+POST /api/upload-photo/ - Upload an image for license plate recognition.
+PUT /api/finalize-license-plate/ - Finalize a recognized plate.
+Parking Lot Management
+GET /api/parking-lots/ - Retrieve parking lot details.
+POST /api/parking-lots/occupy/ - Increase parking lot occupancy.
+File Structure
+apps.py: Configures the Django app.
+models.py: Defines database models for users, vehicles, and parking lots.
+serializers.py: Serializes data for API communication.
+views.py: Implements logic for license plate recognition, user authentication, and parking lot operations.
+recognition_service.py: Contains functions for preprocessing images and integrating with YOLOv5 for recognition.
