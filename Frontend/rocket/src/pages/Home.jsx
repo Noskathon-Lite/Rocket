@@ -35,10 +35,10 @@ const Home = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
             >
-              Welcome to Autoplate, where we streamline your parking experience.
-              Our system records vehicle entries and exits, providing real-time
-              availability updates. Sign in to manage your parking effortlessly
-              and enjoy a hassle-free experience.
+              Welcome to our parking management system, where we streamline your
+              parking experience. Our system records vehicle entries and exits,
+              providing real-time availability updates. Sign in to manage your
+              parking effortlessly and enjoy a hassle-free experience.
             </motion.p>
 
             <motion.div
