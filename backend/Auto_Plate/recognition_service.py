@@ -75,6 +75,4 @@ def detect_and_recognize_license_plate(image_path):
     return license_plates
 
 
-def decode_prediction(prediction):
 
-    return ''.join([chr(p.argmax().item()) for p in prediction])
