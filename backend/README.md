@@ -56,3 +56,10 @@ models.py: Defines database models for users, vehicles, and parking lots.
 serializers.py: Serializes data for API communication.
 views.py: Implements logic for license plate recognition, user authentication, and parking lot operations.
 recognition_service.py: Contains functions for preprocessing images and integrating with YOLOv5 for recognition.
+
+
+Contribution
+Team-members cancontribute!
+
+License
+This project is licensed under the MIT License. See the LICENSE file for details.
