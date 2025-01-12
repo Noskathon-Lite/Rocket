@@ -90,7 +90,7 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.plate_number} (ID: {self.id})"
 
-
+#Model Database for ParkingLotRecord
 class ParkingLotRecord(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     parking_lot = models.ForeignKey(ParkingLot, on_delete=models.CASCADE)
