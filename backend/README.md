@@ -24,3 +24,17 @@ Install dependencies: pip install -r requirements.txt
 Make corresponding db in postgreSQL with the credentials provided in settings.py
 Apply database migrations: python manage.py migrate
 Run the development server: python manage.py runserver
+
+Backend Setup
+Clone the repository:
+git clone https://github.com/yourusername/auto-plate-recognition.git
+cd auto-plate-recognition
+2.Create Database:
+
+Create a databse inside postgreSQL with the name provided in settings.py
+Make the corresponding database in PostgreSQL with the credentials provided in settings.py.
+Apply migration
+python manage.py makemigration
+python manage.py migrate
+Start server with Pycharm or
+python manage.py runserver
