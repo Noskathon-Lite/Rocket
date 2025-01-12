@@ -63,3 +63,8 @@ Team-members cancontribute!
 
 License
 This project is licensed under the MIT License. See the LICENSE file for details.
+
+Acknowledgments
+YOLOv5 by Ultralytics
+Tesseract OCR
+PyTorch Framework
