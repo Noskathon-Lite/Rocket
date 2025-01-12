@@ -13,14 +13,14 @@ import pytesseract
 
 def load_recognition_model():
     """
-    Load the YOLOv5 model from the pre-trained .pt file.
+    Load the YOLOv8 model from the pre-trained .pt file.
     """
     print("Loading model...")
-    model_path = Path(settings.BASE_DIR) / 'model' / 'best_submission.pt'
-    print(f"Loading YOLOv5 model from: {model_path}")
+    model_path = Path(settings.BASE_DIR) / 'model' / 'best.pt'
+    print(f"Loading YOLOv8 model from: {model_path}")
 
     # Load the YOLOv5 model
-    model = torch.hub.load('ultralytics/yolov5', 'custom', path=str(model_path))
+    model = torch.hub.load('ultralytics/yolo', 'custom', path=str(model_path))
     model.eval()  # Set to evaluation mode
     return model
 
@@ -60,13 +60,13 @@ def preprocess_image(image_path):
 
 def detect_and_recognize_license_plate(image_path):
     """
-    Detect license plates and recognize text using YOLOv5 and OCR.
+    Detect license plates and recognize text using YOLOv8 and OCR.
     """
-    # Load the YOLOv5 model
+    # Load the YOLOv8 model
     model = load_recognition_model()
 
     # Run inference on the input image
-    print("Running YOLOv5 model...")
+    print("Running YOLOv8 model...")
     results = model(image_path)
 
     # Extract and recognize license plates using OCR
