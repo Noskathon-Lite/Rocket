@@ -17,3 +17,10 @@ PyTorch
 PostgreSQL
 Node.js (for frontend development)
 Tesseract OCR (optional for enhanced plate recognition)
+
+
+Installation for Team Members
+Install dependencies: pip install -r requirements.txt
+Make corresponding db in postgreSQL with the credentials provided in settings.py
+Apply database migrations: python manage.py migrate
+Run the development server: python manage.py runserver
