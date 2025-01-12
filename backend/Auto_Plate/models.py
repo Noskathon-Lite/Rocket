@@ -52,7 +52,7 @@ class Resident(models.Model):
         vehicle_count = self.vehicles.count()
         return f"{self.full_name} - {self.phone_number} - {vehicle_count} vehicles"
 
-
+#model database for ParkingLot
 class ParkingLot(models.Model):
     name = models.CharField(max_length=150,unique=True)
     location = models.CharField(max_length=300)
@@ -73,7 +73,7 @@ class ParkingLot(models.Model):
     def __str__(self):
         return f"{self.name} (ID: {self.id})"
 
-
+#model database for Vehicle
 class Vehicle(models.Model):
     VEHICLE_TYPES = [
         ('2-wheeler', '2-Wheeler'),
