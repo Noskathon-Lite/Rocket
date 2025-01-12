@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 from Auto_Plate.models import Vehicle, ParkingLotRecord, Resident
 
-
+# Signal are configured
 @receiver(post_delete, sender=Vehicle)
 def update_parking_lot_on_vehicle_delete(sender, instance, **kwargs):
     print(f"Vehicle {instance.plate_number}: Status = {instance.status}, Parking Lot = {instance.parking_lot}")
