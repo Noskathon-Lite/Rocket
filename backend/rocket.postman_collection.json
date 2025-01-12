@@ -1,55 +1,257 @@
-
 {
 	"info": {
 		"_postman_id": "06f31c51-c306-4c93-84bd-58b8c10be19b",
 		"name": "rocket",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "32632972",
-		"_collection_link": "https://cloudy-equinox-999006.postman.co/workspace/0bbe0317-0dd2-42fb-8ad6-00ff6ced37d7/collection/32632972-06f31c51-c306-4c93-84bd-58b8c10be19b?action=share&source=collection_link&creator=32632972"
+		"_collection_link": "https://cloudy-equinox-999006.postman.co/workspace/My-Workspace~0bbe0317-0dd2-42fb-8ad6-00ff6ced37d7/collection/32632972-06f31c51-c306-4c93-84bd-58b8c10be19b?action=share&source=collection_link&creator=32632972"
 	},
 	"item": [
 		{
-			"name": "register",
+			"name": "Register",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"full_name\": \"2\",\r\n    \"email\": \"a@b.com\",\r\n    \"password\": \"1234\",\r\n    \"role\": \"user\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"register",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
-			"name": "login",
+			"name": "Login",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"a@b.com\",\r\n    \"password\": \"1234\"\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "LogOut",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"refresh_token\" : \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNzUzMzc4MywiaWF0IjoxNzM2MzI0MTgzLCJqdGkiOiJjNmFjODUzZWY3YzU0ZmIwOTUyZTBmNmFlZWIzN2QxZiIsInVzZXJfaWQiOjN9.gOZWnCrrbqO3ITrHzK8RhJyETEiuP0EkwKtaNOlj0FE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/logout",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"logout"
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Refresh Access Token",
 			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/refresh-token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"refresh-token"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check Token",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM3Mjk4NjYyLCJpYXQiOjE3MzYzMjQ5MzgsImp0aSI6IjBkZTMxNTUwYWQ1MjQ0YjI5ODM1YmRiODk0MTZkODc1IiwidXNlcl9pZCI6MX0.sXTx927c029tXWbeFe7ANBw6g0N-wfoSAjh2U3O-TwQ",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
-				"header": []
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/auth/secure/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"secure",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Finalize Plate Number",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/v1/service/finalize/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"finalize",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Upload",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "c",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": []
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/service/upload/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"upload",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PL status",
 			"request": {
 				"method": "GET",
 				"header": []
@@ -59,24 +261,108 @@
 		{
 			"name": "Search Similar",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"plate_number\": \"789\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/service/search-similar/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"search-similar",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Search Registered Plates",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"plate_number\": \"Balkumari\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/service/search-plates/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"search-plates",
+						""
+					]
+				}
 			},
 			"response": []
 		},
 		{
 			"name": "Exit",
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"plate_number\": \"WUO8YWC\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/v1/service/exit/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"service",
+						"exit",
+						""
+					]
+				}
 			},
 			"response": []
 		},
@@ -87,6 +373,46 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "Get Records",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM3Mjk4NjYyLCJpYXQiOjE3MzYzMjQ5MzgsImp0aSI6IjBkZTMxNTUwYWQ1MjQ0YjI5ODM1YmRiODk0MTZkODc1IiwidXNlcl9pZCI6MX0.sXTx927c029tXWbeFe7ANBw6g0N-wfoSAjh2U3O-TwQ\"",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
