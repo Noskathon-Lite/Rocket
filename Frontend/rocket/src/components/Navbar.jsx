@@ -1,132 +1,160 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 
-const NavLink = ({ to, children }) => {
-  const location = useLocation();
-  const isActive = location.pathname === to;
+// useAuth hook
+function useAuth() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    // Check authentication status here
+    // This is just a placeholder implementation
+    const checkAuth = async () => {
+      // Replace this with your actual authentication check
+      const auth = localStorage.getItem("isAuthenticated") === "true";
+      setIsAuthenticated(auth);
+    };
+
+    checkAuth();
+  }, []);
+
+  return { isAuthenticated };
+}
+
+// Button component
+const Button = React.forwardRef(
+  ({ className, variant, asChild, ...props }, ref) => {
+    const Comp = asChild ? React.Children.only(props.children).type : "button";
+    return (
+      <Comp
+        className={`px-4 py-2 rounded-md font-medium transition-colors ${
+          variant === "ghost"
+            ? "text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+            : "text-white bg-blue-500 hover:bg-blue-400"
+        } ${className}`}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+// NavLink component
+function NavLink({ to, children }) {
   return (
     <Link
       to={to}
-      className={`px-4 py-2 rounded-md transition-colors duration-200 ${
-        isActive ? "bg-blue-500 text-white" : "text-gray-700 hover:bg-gray-100"
-      }`}
+      className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700 transition duration-300"
     >
       {children}
     </Link>
   );
-};
+}
 
-const Navbar = () => {
+// MobileNavLink component
+function MobileNavLink({ to, children }) {
+  return (
+    <Link
+      to={to}
+      className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50 transition duration-300"
+    >
+      {children}
+    </Link>
+  );
+}
+
+// Main Navbar component
+function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const { isAuthenticated } = useAuth();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  if (isAuthenticated) {
+    return null;
+  }
 
   return (
-    <nav
-      className={`sticky top-0 z-50 w-full transition-colors duration-300 ${
-        isHomePage && !isScrolled
-          ? "bg-transparent"
-          : "bg-white bg-opacity-80 backdrop-blur-sm shadow-md"
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          <Link to="/" className="flex items-center space-x-2">
-            <img
-              src={logo}
-              alt="logo"
-              className="w-24 hover:scale-105 transition-all relative"
-            />
-          </Link>
-
-          <div className="hidden md:flex items-center space-x-4">
-            <div className="bg-white bg-opacity-80 backdrop-blur-sm rounded-lg p-1 flex space-x-1 shadow-md">
+    <nav className="bg-white shadow-lg sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link to="/" className="flex-shrink-0 flex items-center">
+              <img
+                className="h-12 w-auto transition-transform duration-300 hover:scale-105"
+                src={logo}
+                alt="Logo"
+              />
+            </Link>
+            <div className="hidden md:ml-6 md:flex md:space-x-8">
               <NavLink to="/">Home</NavLink>
-              <NavLink to="/about">About</NavLink>
+              <NavLink to="/about">About Us</NavLink>
               <NavLink to="/contact">Contact</NavLink>
             </div>
           </div>
-
           <div className="hidden md:flex items-center space-x-4">
-            <Link
-              to="/login"
-              className="px-4 py-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-            >
-              Log In
-            </Link>
-            <Link
-              to="/signup"
-              className="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-200"
-            >
-              Sign Up
-            </Link>
+            <Button variant="ghost" asChild>
+              <Link to="/login">Log In</Link>
+            </Button>
+            <Button asChild>
+              <Link to="/signup">Sign Up</Link>
+            </Button>
           </div>
-
-          <div className="md:hidden">
+          <div className="flex items-center md:hidden">
             <button
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900"
-              aria-label={isOpen ? "Close menu" : "Open menu"}
             >
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {isOpen ? (
-                  <path d="M6 18L18 6M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
-              </svg>
+              <span className="sr-only">Open main menu</span>
+              {isOpen ? (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  className="block h-6 w-6"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
-            <NavLink to="/contact">Contact</NavLink>
-          </div>
-          <div className="pt-4 pb-3 border-t border-gray-200">
-            <div className="px-2 space-y-1">
-              <Link
-                to="/login"
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
-              >
-                Log In
-              </Link>
-              <Link
-                to="/signup"
-                className="block px-3 py-2 rounded-md text-base font-medium text-white bg-blue-500 hover:bg-blue-600"
-              >
-                Sign Up
-              </Link>
-            </div>
-          </div>
+      <div className={`${isOpen ? "block" : "hidden"} md:hidden`}>
+        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <MobileNavLink to="/">Home</MobileNavLink>
+          <MobileNavLink to="/about">About Us</MobileNavLink>
+          <MobileNavLink to="/contact">Contact</MobileNavLink>
+          <MobileNavLink to="/login">Log In</MobileNavLink>
+          <MobileNavLink to="/signup">Sign Up</MobileNavLink>
         </div>
-      )}
+      </div>
     </nav>
   );
-};
+}
 
 export default Navbar;
