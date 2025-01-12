@@ -29,7 +29,7 @@ schema_view = get_schema_view(
 )
 
 router = DefaultRouter()
-
+# API Endpoints 
 urlpatterns = [
     path('api/v1/auth/secure/', SecureAPIView.as_view(), name='secure'),
     path('admin/', admin.site.urls),

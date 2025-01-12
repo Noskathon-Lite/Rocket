@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import User, Vehicle, ParkingLot, ParkingLotRecord, LicensePlateLog, Resident
-
+# Serialization for ParkingLotSerializer,VehiclesSerializer,ParkingLotRecordSerializer and all
 
 class ParkingLotSerializer(serializers.ModelSerializer):
     class Meta:

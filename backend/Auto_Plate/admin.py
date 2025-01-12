@@ -8,7 +8,7 @@ from django.utils.html import format_html, format_html_join, format_html
 
 from .models import User, Vehicle, ParkingLot, ParkingLotRecord, LicensePlateLog, Resident
 
-
+#Admin Panel confirmed
 def assign_permissions(user):
     if user.role == 'admin':
         # Grant all permissions for specific models

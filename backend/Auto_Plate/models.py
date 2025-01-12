@@ -5,7 +5,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.contrib.auth import get_user_model
 
 
-
+#model database for UserManager
 class UserManager(BaseUserManager):
     def create_user(self, full_name, email, password=None, **extra_fields):
         if not email:
@@ -21,7 +21,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(full_name, email, password, **extra_fields)
 
-
+#Model database for user
 class User(AbstractBaseUser, PermissionsMixin):
     full_name = models.CharField(max_length=150, unique=False)
     email = models.EmailField(unique=True)
@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def is_staff(self):
         return self.is_superuser or self.role == 'admin'
 
-
+#Model database for Resident
 class Resident(models.Model):
     full_name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=15, unique=True)
@@ -52,7 +52,7 @@ class Resident(models.Model):
         vehicle_count = self.vehicles.count()
         return f"{self.full_name} - {self.phone_number} - {vehicle_count} vehicles"
 
-
+#model database for ParkingLot
 class ParkingLot(models.Model):
     name = models.CharField(max_length=150,unique=True)
     location = models.CharField(max_length=300)
@@ -73,7 +73,7 @@ class ParkingLot(models.Model):
     def __str__(self):
         return f"{self.name} (ID: {self.id})"
 
-
+#model database for Vehicle
 class Vehicle(models.Model):
     VEHICLE_TYPES = [
         ('2-wheeler', '2-Wheeler'),
@@ -90,7 +90,7 @@ class Vehicle(models.Model):
     def __str__(self):
         return f"{self.plate_number} (ID: {self.id})"
 
-
+#Model Database for ParkingLotRecord
 class ParkingLotRecord(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     parking_lot = models.ForeignKey(ParkingLot, on_delete=models.CASCADE)
