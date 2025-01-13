@@ -5,12 +5,36 @@ import About from "./About";
 import Contact from "./Contact";
 
 const Home = () => {
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 0.3 }}
-    transition={{ duration: 1 }}
-    className="absolute inset-0 bg-black"
-  />;
+  const [content, setContent] = useState({
+    title: {
+      line1: "Effortless",
+      line2: "Parking",
+      line3: "Management",
+    },
+    description:
+      "Welcome to our parking management system, where we streamline your parking experience. Our system records vehicle entries and exits, providing real-time availability updates. Sign in to manage your parking effortlessly and enjoy a hassle-free experience.",
+    ctaText: "Get Started",
+    backgroundImage: "/parkingbg2.jpg",
+  });
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: -20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8 },
+  };
+
+  const fadeIn = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    transition: { duration: 0.8, delay: 0.3 },
+  };
+
+  const fadeInDown = {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, delay: 0.6 },
+  };
+
   useEffect(() => {
     const fetchContent = async () => {
       try {
