@@ -7,6 +7,9 @@ const ParkingLotPage = () => {
   const [isResident, setIsResident] = useState(false);
   const [vehicleType, setVehicleType] = useState("2-wheeler");
   const vehicleTypes = ["2-wheeler", "4-wheeler"];
+  const [parkingLots, setParkingLots] = useState([]);
+  const [selectedParkingLot, setSelectedParkingLot] = useState("");
+  const [isResident, setIsResident] = useState(false);
 
   const fetchVehicleInfo = async () => {
     try {
@@ -49,6 +52,42 @@ const ParkingLotPage = () => {
       setIsResident(false);
       setVehicleStatus("out");
       setTimeout(() => setError(null), 2000);
+    }
+  };
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return; // Ensure a file is selected
+
+    setImage(file);
+    setPreviewUrl(URL.createObjectURL(file));
+    setIsLoading(true);
+    setError(null);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    try {
+      const response = await apiClient.post("/service/upload/", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      // Assuming the response contains the 'detected_plate'
+      setDetectedPlate(response.data.detected_plate);
+    } catch (err) {
+      console.error("Error uploading image:", err);
+      setError("Failed to upload image. Please try again.");
+
+      // Optionally, log more detailed error information for debugging
+      if (err.response) {
+        console.error("Error Response:", err.response);
+      } else if (err.message) {
+        console.error("Error Message:", err.message);
+      }
+    } finally {
+      setIsLoading(false);
     }
   };
 
