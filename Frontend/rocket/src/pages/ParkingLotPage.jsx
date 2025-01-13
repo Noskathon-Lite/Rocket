@@ -10,6 +10,12 @@ const ParkingLotPage = () => {
   const [parkingLots, setParkingLots] = useState([]);
   const [selectedParkingLot, setSelectedParkingLot] = useState("");
   const [isResident, setIsResident] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [fileInputKey, setFileInputKey] = useState(Date.now());
+
 
   const fetchVehicleInfo = async () => {
     try {
@@ -283,14 +289,41 @@ const ParkingLotPage = () => {
               />
             </div>
             {previewUrl && (
-              <div className="flex-shrink-0">
-                <img
-                  src={previewUrl}
-                  alt="Preview"
-                  className="w-68 h-48 object-cover rounded-md"
-                />
-              </div>
-            )}
+                <div className="flex-shrink-0">
+                  <img
+                    src={previewUrl}
+                    alt="Preview"
+                    className="w-68 h-48 object-cover rounded-md"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
+
+          {(error || success) && (
+            <div className="max-w-4xl mx-auto p-6">
+              {error && (
+                <div
+                  className="p-4 bg-red-100 border border-red-400 text-red-700 rounded"
+                  role="alert"
+                >
+                  <strong className="font-bold">Error:</strong>
+                  <span className="block sm:inline"> {error}</span>
+                </div>
+              )}
+
+              {success && (
+                <div
+                  className="p-4 bg-green-100 border border-green-400 text-green-700 rounded"
+                  role="alert"
+                >
+                  <strong className="font-bold">Success:</strong>
+                  <span className="block sm:inline"> {success}</span>
+                </div>
+              )}
+            </div>
+          )}
+
           </div>
         </div>
       </div>
