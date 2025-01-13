@@ -3,19 +3,23 @@ import { useNavigate } from "react-router-dom";
 import apiClient from "../api/apiClient";
 import DashboardLayout from "../components/DashboardLayout";
 import { Check, X } from "lucide-react";
-
+import { format, parse, startOfMonth, endOfMonth } from "date-fns";
 
 const HistoryPage = () => {
   const navigate = useNavigate();
   const [records, setRecords] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [error, setError] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(
+    format(new Date(), "yyyy-MM")
   );
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
 
-{
+    if (!token == "user") {
+      navigate("/login");
+    } else {
       fetchParkingRecords();
     }
   }, [navigate]);
