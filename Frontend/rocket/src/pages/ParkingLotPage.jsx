@@ -12,6 +12,7 @@ import {
   Phone,
   User,
 } from "lucide-react";
+import CameraFeed from "../components/CameraFeed";
 
 const ParkingLotPage = () => {
   const [image, setImage] = useState(null);
@@ -25,16 +26,15 @@ const ParkingLotPage = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-  const [fileInputKey, setFileInputKey] = useState(Date.now());
   const [similarVehicles, setSimilarVehicles] = useState([]);
   const [processingExit, setProcessingExit] = useState(null);
   const [hoveredVehicle, setHoveredVehicle] = useState(null);
   const [cardPosition, setCardPosition] = useState({ top: 0, left: 0 });
-  const [vehicleStatus, setVehicleStatus] = useState("out"); // New state for vehicle status
+  const [vehicleStatus, setVehicleStatus] = useState("out");
   const similarVehiclesRef = useRef(null);
   const navigate = useNavigate();
 
-  const SERVER_BASE_URL = "http://localhost:8000/"; // Update this with your actual server base URL
+  const SERVER_BASE_URL = "http://localhost:8000/";
 
   useEffect(() => {
     if (detectedPlate) {
@@ -92,7 +92,6 @@ const ParkingLotPage = () => {
           setVehicleType(validType);
         }
 
-        // Set the vehicle status
         setVehicleStatus(response.data.status || "out");
       } else {
         setIsResident(false);
@@ -106,17 +105,12 @@ const ParkingLotPage = () => {
     }
   };
 
-  const handleImageUpload = async (e) => {
-    const file = e.target.files[0];
-    if (!file) return; // Ensure a file is selected
-
-    setImage(file);
-    setPreviewUrl(URL.createObjectURL(file));
+  const handleImageCapture = async (imageBlob) => {
     setIsLoading(true);
     setError(null);
 
     const formData = new FormData();
-    formData.append("image", file);
+    formData.append("image", imageBlob, "captured_image.jpg");
 
     try {
       const response = await apiClient.post("/service/upload/", formData, {
@@ -125,18 +119,12 @@ const ParkingLotPage = () => {
         },
       });
 
-      // Assuming the response contains the 'detected_plate'
       setDetectedPlate(response.data.detected_plate);
+      setPreviewUrl(URL.createObjectURL(imageBlob));
+      setSuccess("Image captured and uploaded successfully.");
     } catch (err) {
       console.error("Error uploading image:", err);
       setError("Failed to upload image. Please try again.");
-
-      // Optionally, log more detailed error information for debugging
-      if (err.response) {
-        console.error("Error Response:", err.response);
-      } else if (err.message) {
-        console.error("Error Message:", err.message);
-      }
     } finally {
       setIsLoading(false);
     }
@@ -198,7 +186,6 @@ const ParkingLotPage = () => {
         finalized_plate_number: detectedPlate,
         vehicle_type: vehicleType,
         parking_lot_id: selectedParkingLot,
-        // is_resident: isResident,
       };
       console.log("Sending data:", data);
 
@@ -221,21 +208,20 @@ const ParkingLotPage = () => {
         setIsResident(false);
         setSelectedParkingLot(parkingLots[0]?.parking_lot_id || "");
         setPreviewUrl(null);
-        setFileInputKey(Date.now());
         setSimilarVehicles([]);
         setVehicleStatus("out");
       }
     } catch (err) {
       console.error("Error finalizing details:", err);
       if (err.response) {
-        //   if (err.response.status === 400) {
-        //     setError("The vehicle is already in the parking lot.");
-        //   } else if (err.response.data) {
-        //     setError(
-        //       err.response.data.error ||
-        //         "Failed to record parking details. Please try again."
-        //     );
-        //   }
+        if (err.response.status === 400) {
+          setError("");
+        } else if (err.response.data) {
+          setError(
+            err.response.data.error ||
+              "Failed to record parking details. Please try again."
+          );
+        }
       } else {
         setError("Failed to record parking details. Please try again.");
       }
@@ -266,19 +252,15 @@ const ParkingLotPage = () => {
   };
 
   const calculateCardPosition = (event) => {
-    const offset = 10; // Offset from the mouse pointer
+    const offset = 10;
     let left = event.clientX + offset;
     let top = event.clientY + offset;
 
-    // Check if the card would go off the right edge of the viewport
     if (left + 256 > window.innerWidth) {
-      // Assuming card width is 256px
       left = event.clientX - 256 - offset;
     }
 
-    // Check if the card would go off the bottom edge of the viewport
     if (top + 200 > window.innerHeight) {
-      // Assuming card height is 200px
       top = event.clientY - 200 - offset;
     }
 
@@ -299,7 +281,7 @@ const ParkingLotPage = () => {
 
     return (
       <div
-        className="fixed z-50 w-64 p-4 bg-white rounded-lg shadow-lg border border-gray-200"
+        className="fixed z-50 w-64 p-4 bg-white rounded-lg shadow-lg border border-gray-200 dark:bg-gray-400"
         style={{
           top: `${cardPosition.top}px`,
           left: `${cardPosition.left}px`,
@@ -326,7 +308,7 @@ const ParkingLotPage = () => {
     <DashboardLayout>
       <form onSubmit={handleSubmit} className="flex flex-col">
         <div className="max-w-4xl mx-auto p-6">
-          <h1 className="text-3xl font-bold mb-6 text-gray-800 ">
+          <h1 className="text-3xl font-bold mb-6 text-gray-800 dark:text-gray-200">
             Parking Lot Management
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-24">
@@ -334,7 +316,7 @@ const ParkingLotPage = () => {
               <div>
                 <label
                   htmlFor="detectedPlate"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                 >
                   Detected Plate Number
                 </label>
@@ -350,7 +332,7 @@ const ParkingLotPage = () => {
               <div>
                 <label
                   htmlFor="vehicleType"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                 >
                   Vehicle Type
                 </label>
@@ -371,7 +353,7 @@ const ParkingLotPage = () => {
               <div>
                 <label
                   htmlFor="parkingLot"
-                  className="block text-sm font-medium text-gray-700 "
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-200"
                 >
                   Parking Lot
                 </label>
@@ -392,7 +374,7 @@ const ParkingLotPage = () => {
               <div>
                 <label
                   htmlFor="residentStatus"
-                  className="block text-sm font-medium "
+                  className="block text-sm font-medium dark:text-gray-200"
                 >
                   Residency Status
                 </label>
@@ -438,21 +420,10 @@ const ParkingLotPage = () => {
             </div>
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 ">
-                  Upload Vehicle Image
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-100">
+                  Capture Vehicle Image
                 </label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                  key={fileInputKey}
-                  className="mt-1 block w-full text-sm text-gray-500 
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-blue-50 file:text-blue-700
-                    hover:file:bg-blue-100"
-                />
+                <CameraFeed onCapture={handleImageCapture} />
               </div>
               {previewUrl && (
                 <div className="flex-shrink-0">
@@ -492,10 +463,10 @@ const ParkingLotPage = () => {
 
           {similarVehicles.length > 0 && (
             <div
-              className="mt-6 bg-white shadow-md rounded-lg overflow-hidden "
+              className="mt-6 bg-white shadow-md rounded-lg overflow-hidden dark:bg-gray-700"
               ref={similarVehiclesRef}
             >
-              <h2 className="text-xl font-semibold p-4 bg-gray-50 border-b ">
+              <h2 className="text-xl font-semibold p-4 bg-gray-50 border-b dark:text-gray-100 dark:bg-gray-700">
                 Similar Vehicles
               </h2>
               <ul className="divide-y divide-gray-200">
@@ -507,7 +478,7 @@ const ParkingLotPage = () => {
                     }
                     onMouseEnter={(e) => handleMouseEnter(e, vehicle)}
                     onMouseLeave={() => setHoveredVehicle(null)}
-                    className="p-4 hover:bg-gray-50 transition duration-150 ease-in-out cursor-pointer relative "
+                    className="p-4 hover:bg-gray-50 transition duration-150 ease-in-out cursor-pointer relative dark:hover:bg-gray-500"
                   >
                     <div className="grid grid-cols-5 items-center gap-4">
                       <div className="flex items-center space-x-4 col-span-2">
@@ -520,10 +491,10 @@ const ParkingLotPage = () => {
                           )}
                         </div>
                         <div>
-                          <p className="text-sm font-medium text-gray-900 truncate ">
+                          <p className="text-sm font-medium text-gray-900 truncate dark:text-gray-100">
                             {vehicle.plate_number}
                           </p>
-                          <p className="text-sm text-gray-500 truncate ">
+                          <p className="text-sm text-gray-500 truncate dark:text-gray-50">
                             {vehicle.vehicle_type}
                           </p>
                         </div>
