@@ -1,9 +1,56 @@
 import React, { useState, useEffect, useRef } from "react";
+import apiClient from "../api/apiClient";
 
 const ParkingLotPage = () => {
   const [detectedPlate, setDetectedPlate] = useState("");
   const [selectedParkingLot, setSelectedParkingLot] = useState("");
   const [isResident, setIsResident] = useState(false);
+  const [vehicleType, setVehicleType] = useState("2-wheeler");
+  const vehicleTypes = ["2-wheeler", "4-wheeler"];
+
+  const fetchVehicleInfo = async () => {
+    try {
+      const response = await apiClient.post(
+        "/service/search-plates/",
+        {
+          plate_number: detectedPlate,
+        },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      console.log("Response for number plate status:", response.data);
+
+      if (response.data) {
+        setIsResident(
+          response.data.is_resident !== undefined
+            ? response.data.is_resident
+            : false
+        );
+
+        if (response.data.vehicle_type) {
+          const validType =
+            response.data.vehicle_type === "2-wheeler" ||
+            response.data.vehicle_type === "4-wheeler"
+              ? response.data.vehicle_type
+              : "2-wheeler";
+          setVehicleType(validType);
+        }
+
+        // Set the vehicle status
+        setVehicleStatus(response.data.status || "out");
+      } else {
+        setIsResident(false);
+        setVehicleStatus("out");
+      }
+    } catch (err) {
+      console.error("Error fetching vehicle info:", err);
+      setIsResident(false);
+      setVehicleStatus("out");
+      setTimeout(() => setError(null), 2000);
+    }
+  };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
