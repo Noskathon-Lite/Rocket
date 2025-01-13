@@ -41,6 +41,17 @@ const HistoryPage = () => {
       setIsLoading(false);
     }
   };
+
+  const filteredRecords = records
+    .filter((record) => {
+      if (!record.entry_time) return false;
+      const recordDate = new Date(record.entry_time);
+      const selectedDate = parse(selectedMonth, "yyyy-MM", new Date());
+      return (
+        recordDate >= startOfMonth(selectedDate) &&
+        recordDate <= endOfMonth(selectedDate)
+      );
+    })
     .sort((a, b) => {
       const timeA =
         a.status === "in" ? new Date(a.entry_time) : new Date(a.exit_time);
@@ -49,7 +60,44 @@ const HistoryPage = () => {
       return timeB - timeA;
     });
 
+  const getMonthOptions = () => {
+    const months = new Set();
+    records.forEach((record) => {
+      if (record.entry_time)
+        months.add(format(new Date(record.entry_time), "yyyy-MM"));
+      if (record.exit_time)
+        months.add(format(new Date(record.exit_time), "yyyy-MM"));
+    });
+    return [...months].sort((a, b) => b.localeCompare(a));
+  };
 
+  const formatDateTime = (dateString) => {
+    return dateString
+      ? format(new Date(dateString), "MMM dd, yyyy HH:mm:ss")
+      : "-";
+  };
+
+  const formatParkedTime = (parkedTime) => {
+    if (!parkedTime) return "-";
+
+    try {
+      // Extract numbers before "day", "hour", and "minute"
+      const days = parkedTime.match(/(\d+)\s*day/)?.[1];
+      const hours = parkedTime.match(/(\d+)\s*hour/)?.[1];
+      const minutes = parkedTime.match(/(\d+)\s*minute/)?.[1];
+
+      const parts = [];
+
+      if (days && parseInt(days) > 0) parts.push(`${days}d`);
+      if (hours && parseInt(hours) > 0) parts.push(`${hours}h`);
+      if (minutes && parseInt(minutes) > 0) parts.push(`${minutes}m`);
+
+      return parts.length > 0 ? parts.join(" ") : "0m";
+    } catch (error) {
+      console.error("Error formatting parked time:", error);
+      return parkedTime;
+    }
+  };
 
   if (isLoading) {
     return (
@@ -70,7 +118,27 @@ const HistoryPage = () => {
           <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
             Parking History
           </h1>
-          
+          <div className="flex items-center gap-2">
+            <label
+              htmlFor="month-select"
+              className="text-sm font-medium text-gray-700 dark:text-gray-100"
+            >
+              Filter:
+            </label>
+            <select
+              id="month-select"
+              value={selectedMonth}
+              onChange={(e) => setSelectedMonth(e.target.value)}
+              className="block w-full md:w-48 pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md dark:bg-gray-600"
+            >
+              {getMonthOptions().map((option) => (
+                <option key={option} value={option}>
+                  {format(parse(option, "yyyy-MM", new Date()), "MMMM yyyy")}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
 
         {error && (
           <div className="bg-red-50 border-l-4 border-red-400 p-4 mb-6">
