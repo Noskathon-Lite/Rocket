@@ -147,8 +147,3 @@ PostgreSQL is a powerful, open-source relational database that works seamlessly 
     ```
   - On Windows:  
     Download the installer from the PostgreSQL website and follow the setup wizard.
-
-- Install the **PostgreSQL client tool**:
-  ```bash
-  pip install psycopg2
-  ```
