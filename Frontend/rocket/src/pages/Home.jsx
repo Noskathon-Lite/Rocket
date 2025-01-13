@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 const Home = () => {
   <motion.div
@@ -8,6 +9,18 @@ const Home = () => {
     transition={{ duration: 1 }}
     className="absolute inset-0 bg-black"
   />;
+  useEffect(() => {
+    const fetchContent = async () => {
+      try {
+        // Simulated API call - replace with actual API endpoint
+        // const response = await fetch('your-api-endpoint');
+        // const data = await response.json();
+        // setContent(data);
+      } catch (error) {
+        console.error("Error fetching content:", error);
+      }
+    };
+  }, []);
 
   return (
     <div>
