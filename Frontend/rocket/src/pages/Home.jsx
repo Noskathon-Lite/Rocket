@@ -2,6 +2,13 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const Home = () => {
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 0.3 }}
+    transition={{ duration: 1 }}
+    className="absolute inset-0 bg-black"
+  />;
+
   return (
     <div>
       <div className="relative min-h-[100dvh] flex items-center justify-center">
