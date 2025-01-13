@@ -8,7 +8,7 @@ from django.utils.html import format_html, format_html_join, format_html
 
 from .models import User, Vehicle, ParkingLot, ParkingLotRecord, LicensePlateLog, Resident
 
-#Admin Panel confirmed
+
 def assign_permissions(user):
     if user.role == 'admin':
         # Grant all permissions for specific models
@@ -21,7 +21,7 @@ def assign_permissions(user):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'full_name', 'email', 'role', 'is_resident', 'created_at')
+    list_display = ('id', 'full_name', 'email', 'role', 'created_at')
     search_fields = ('full_name', 'email')
     list_filter = ('role',)
 
@@ -90,6 +90,7 @@ class VehicleAdmin(admin.ModelAdmin):
     def save_model(self, request, obj, form, change):
         if obj.status == 'in' and not obj.parking_lot:
             raise ValidationError("A parking lot must be selected when the vehicle status is 'In'.")
+        obj.plate_number = obj.plate_number.upper().strip()
         super().save_model(request, obj, form, change)
 
     class Media:

@@ -1,15 +1,10 @@
 from pathlib import Path
-
 import torch
 from torchvision import transforms
 from PIL import Image
 from django.conf import settings
 import cv2
 import pytesseract
-
-
-
-
 
 def load_recognition_model():
     """
@@ -73,7 +68,6 @@ def detect_and_recognize_license_plate(image_path):
     license_plates = extract_license_plates(image_path, results)
 
     return license_plates
-
 
 def decode_prediction(prediction):
 
