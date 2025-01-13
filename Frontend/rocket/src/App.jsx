@@ -12,6 +12,9 @@ import Contact from "./pages/Contact";
 import LogIn from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import UserPage from "./pages/UserPage";
+import HistoryPage from "./pages/HistoryPage";
+import ParkingLotPage from "./pages/ParkingLotPage";
+import ImmeExit from "./pages/ImmeExit";
 import apiClient from "./api/apiClient";
 
 // Create AuthContext
@@ -114,6 +117,24 @@ function App() {
               path="/user"
               element={
                 isAuthenticated ? <UserPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                isAuthenticated ? <HistoryPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/parking-lot"
+              element={
+                isAuthenticated ? <ParkingLotPage /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/imme-exit"
+              element={
+                isAuthenticated ? <ImmeExit /> : <Navigate to="/login" />
               }
             />
           </Routes>
