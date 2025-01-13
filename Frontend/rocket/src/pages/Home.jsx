@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import About from "./About";
 
 const Home = () => {
   <motion.div
@@ -68,7 +69,6 @@ const Home = () => {
         </div>
       </div>
       <About />
-      <Contact />
     </div>
   );
 };
