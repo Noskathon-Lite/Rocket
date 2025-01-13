@@ -16,6 +16,32 @@ const ParkingLotPage = () => {
   const [previewUrl, setPreviewUrl] = useState(null);
   const [fileInputKey, setFileInputKey] = useState(Date.now());
 
+  useEffect(() => {
+    if (detectedPlate) {
+      fetchParkingLots();
+      fetchVehicleInfo();
+      fetchSimilarVehicles();
+    }
+    console.log("Detected Plate:", detectedPlate);
+  }, [detectedPlate]);
+
+  const fetchParkingLots = async () => {
+    setIsLoading(true);
+    try {
+      const response = await apiClient.get("/parking-lot/status/");
+      setParkingLots(response.data);
+      if (response.data.length > 0) {
+        setSelectedParkingLot(response.data[0].parking_lot_id);
+      }
+    } catch (err) {
+      console.error("Error fetching parking lots:", err);
+      setError("Failed to fetch parking lots. Please try again.");
+      setTimeout(() => setError(null), 2000);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   const fetchVehicleInfo = async () => {
     try {
@@ -158,6 +184,47 @@ const ParkingLotPage = () => {
       setIsLoading(false);
     }
   };
+
+  const fetchSimilarVehicles = async () => {
+    if (!detectedPlate) {
+      console.log("Detected plate is empty, skipping similar vehicles fetch.");
+      setSimilarVehicles([]);
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("access_token");
+      const response = await apiClient.post(
+        "/service/search-similar/",
+        { plate_number: detectedPlate },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      console.log("Response from server:", response.data);
+
+      if (response.data && Array.isArray(response.data.similar_vehicles)) {
+        response.data.similar_vehicles.forEach((vehicle) => {
+          console.log(
+            `Vehicle ${vehicle.plate_number} status: ${vehicle.status}`
+          );
+        });
+        setSimilarVehicles(response.data.similar_vehicles);
+      } else {
+        console.error("Unexpected response format:", response.data);
+        setSimilarVehicles([]);
+      }
+    } catch (err) {
+      console.error(
+        "Error fetching similar vehicles:",
+        err.response?.data || err.message
+      );
+      setError("Failed to fetch similar vehicles. Please try again.");
+      setSimilarVehicles([]);
+    }
+  };
+
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
