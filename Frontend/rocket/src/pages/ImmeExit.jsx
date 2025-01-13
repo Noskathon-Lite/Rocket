@@ -11,6 +11,8 @@ const ImmeExit = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [feeDetails, setFeeDetails] = useState(null);
   const [isConfirming, setIsConfirming] = useState(false);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if (!plateNumber) {
