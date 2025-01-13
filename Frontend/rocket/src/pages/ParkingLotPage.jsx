@@ -91,6 +91,68 @@ const ParkingLotPage = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+    setSuccess(null);
+
+    if (!selectedParkingLot) {
+      setSelectedParkingLot(parkingLots[0]?.parking_lot_id || "");
+    }
+
+    try {
+      const token = localStorage.getItem("access_token");
+      const data = {
+        finalized_plate_number: detectedPlate,
+        vehicle_type: vehicleType,
+        parking_lot_id: selectedParkingLot,
+        // is_resident: isResident,
+      };
+      console.log("Sending data:", data);
+
+      const response = await apiClient.post("/service/finalize/", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.data.error) {
+        setError(response.data.error);
+      } else {
+        await fetchParkingLots();
+        setSuccess("Parking details successfully recorded.");
+
+        setImage(null);
+        setDetectedPlate("");
+        setVehicleType("2-wheeler");
+        setIsResident(false);
+        setSelectedParkingLot(parkingLots[0]?.parking_lot_id || "");
+        setPreviewUrl(null);
+        setFileInputKey(Date.now());
+        setSimilarVehicles([]);
+        setVehicleStatus("out");
+      }
+    } catch (err) {
+      console.error("Error finalizing details:", err);
+      if (err.response) {
+        //   if (err.response.status === 400) {
+        //     setError("The vehicle is already in the parking lot.");
+        //   } else if (err.response.data) {
+        //     setError(
+        //       err.response.data.error ||
+        //         "Failed to record parking details. Please try again."
+        //     );
+        //   }
+      } else {
+        setError("Failed to record parking details. Please try again.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <form onSubmit={handleSubmit} className="flex flex-col">
       <div className="max-w-4xl mx-auto p-6">
