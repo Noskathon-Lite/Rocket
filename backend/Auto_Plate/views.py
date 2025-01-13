@@ -11,7 +11,7 @@ import os,re
 
 from rest_framework_simplejwt.exceptions import TokenError
 
-from Auto_Plate.models import Vehicle, ParkingLotRecord, ParkingLot
+from Auto_Plate.models import Vehicle, ParkingLotRecord, ParkingLot, Resident
 from django.contrib.auth import get_user_model
 from .serializers import RegisterSerializer, ParkingLotRecordSerializer, ResidentSerializer
 
@@ -240,6 +240,7 @@ class FinalizeLicensePlateServiceView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
+            # Only create non-resident vehicles if they don't exist
             vehicle, created = Vehicle.objects.get_or_create(
                 plate_number=finalized_plate_number,
                 defaults={
@@ -248,13 +249,6 @@ class FinalizeLicensePlateServiceView(APIView):
                     'parking_lot': parking_lot,
                 }
             )
-
-            existing_record = ParkingLotRecord.objects.filter(vehicle=vehicle, status='in').first()
-            if existing_record:
-                return Response(
-                    {"error": "Active parking record already exists for this vehicle."},
-                    status=status.HTTP_400_BAD_REQUEST,
-                )
 
             updates = []
             if not created:  # If vehicle already exists, update fields as needed

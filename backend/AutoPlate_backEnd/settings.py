@@ -116,14 +116,15 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'rocket_backend',
         'USER': 'postgres',
-        'PASSWORD': 'alam',
+        'PASSWORD': 'roshan',
         'HOST': 'localhost',
         'PORT': '5432',
     }
 }
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://localhost:5674"
+    "http://localhost:5674",
+    "http://192.168.1.68:5173"
     ]
 
 # Password validation
