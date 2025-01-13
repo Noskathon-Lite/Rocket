@@ -7,6 +7,8 @@ const ImmeExit = () => {
   const navigate = useNavigate();
   const { plateNumber } = location.state || {};
   const [isLoading, setIsLoading] = useState(true);
+  const [feeDetails, setFeeDetails] = useState(null);
+  const [isConfirming, setIsConfirming] = useState(false);
 
   useEffect(() => {
     if (!plateNumber) {
@@ -14,6 +16,26 @@ const ImmeExit = () => {
       setIsLoading(false);
       return;
     }
+    const fetchFeeDetails = async () => {
+      try {
+        const token = localStorage.getItem("access_token");
+        const response = await apiClient.post(
+          "/service/calculate-fee/",
+          { plate_number: plateNumber },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setFeeDetails(response.data);
+      } catch (err) {
+        console.error("Error fetching fee details:", err);
+        setError("Failed to fetch fee details. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
     fetchFeeDetails();
   }, [plateNumber]);
