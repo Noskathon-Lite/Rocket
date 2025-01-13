@@ -5,110 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="67c4e623-d43d-4f78-90ed-8c4080a644d4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ultralytics/Licence_Plate_Detection_YOLO_V8.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/best.pt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/demo.mp4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/demo2.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/hub/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/hub/auth.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/hub/session.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/hub/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v3/yolov3-spp.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v3/yolov3-tiny.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v3/yolov3.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v5/yolov5l.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v5/yolov5m.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v5/yolov5n.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v5/yolov5s.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v5/yolov5x.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/cls/yolov8l-cls.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/cls/yolov8m-cls.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/cls/yolov8n-cls.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/cls/yolov8s-cls.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/cls/yolov8x-cls.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/seg/yolov8l-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/seg/yolov8m-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/seg/yolov8n-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/seg/yolov8s-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/seg/yolov8x-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8l.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8m.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8n.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8s.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8x.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/models/v8/yolov8x6.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/nn/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/nn/autobackend.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/nn/modules.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/nn/tasks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/cli.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/configs/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/configs/default.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/configs/hydra_patch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/augment.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/build.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataloaders/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataloaders/stream_loaders.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataloaders/v5augmentations.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataloaders/v5loader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataset.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/dataset_wrappers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/Argoverse.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/GlobalWheat2020.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/ImageNet.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/Objects365.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/SKU-110K.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/VOC.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/VisDrone.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/coco.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/coco128-seg.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/coco128.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/datasets/xView.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/scripts/download_weights.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/scripts/get_coco.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/scripts/get_coco128.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/scripts/get_imagenet.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/data/utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/exporter.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/predictor.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/trainer.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/engine/validator.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/autobatch.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/clearml.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/comet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/hub.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/callbacks/tensorboard.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/checks.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/dist.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/downloads.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/files.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/instance.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/loss.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/metrics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/ops.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/plotting.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/tal.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/utils/torch_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/v8/detect/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/v8/detect/predict.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/v8/detect/train.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ultralytics/yolo/v8/detect/val.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/rocket/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/rocket/src/App.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Frontend/rocket/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/rocket/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/rocket/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/rocket/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/AutoPlate_backEnd/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AutoPlate_backEnd/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Auto_Plate/recognition_service.py" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Plate/recognition_service.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Auto_Plate/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Auto_Plate/views.py" afterDir="false" />
@@ -134,20 +32,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/hackathon/AutoPlate_backEnd&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "E:/hackathon/AutoPlate_backEnd",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -169,7 +67,7 @@
       <workItem from="1736695478821" duration="4547000" />
       <workItem from="1736732744778" duration="378000" />
       <workItem from="1736733144447" duration="12000" />
-      <workItem from="1736734156977" duration="1673000" />
+      <workItem from="1736734156977" duration="2066000" />
     </task>
     <servers />
   </component>
