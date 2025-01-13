@@ -48,21 +48,21 @@ const UserPage = () => {
     <DashboardLayout>
       <div className="max-w-7xl mx-auto p-4">
         {/* Welcome Section */}
-        <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-md mb-6 dark:bg-gray-400">
+        <div className="flex items-center bg-blue-100 p-4 rounded-lg shadow-md mb-6 ">
           <div className="ml-4">
-            <h2 className="text-2xl font-semibold text-blue-700 dark:text-blue-600">
+            <h2 className="text-2xl font-semibold text-blue-700 ">
               Welcome, {fullName}!
             </h2>
-            <p className="text-sm text-gray-600 dark:text-gray-700">
+            <p className="text-sm text-gray-600 ">
               We're glad to have you here. Manage parking spaces with ease!
             </p>
           </div>
         </div>
 
         {/* Parking Lots Grid Section */}
-        <div className="bg-white shadow-md rounded-lg p-6 dark:bg-gray-600">
+        <div className="bg-white shadow-md rounded-lg p-6 ">
           <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-300">
+            <h2 className="text-2xl font-bold text-gray-800 ">
               Parking Lot Status
             </h2>
           </div>
