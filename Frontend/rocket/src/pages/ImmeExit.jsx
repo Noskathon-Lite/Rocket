@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { format, parseISO } from "date-fns";
 import apiClient from "../api/apiClient";
 
 const ImmeExit = () => {
@@ -39,6 +40,12 @@ const ImmeExit = () => {
 
     fetchFeeDetails();
   }, [plateNumber]);
+
+  const formatDateTime = (dateString) => {
+    return dateString
+      ? format(parseISO(dateString), "MMM dd, yyyy HH:mm:ss")
+      : "-";
+  };
 
   const handleConfirmExit = async () => {
     setIsConfirming(true);
