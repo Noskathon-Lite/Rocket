@@ -4,19 +4,19 @@ export default function About() {
       name: "Mehfuz Alam",
       role: "Backend",
       bio: "A Backend developer and a group leader to lead the project to fruition as well as having a history with Django.",
-      imageUrl: "test3.png",
+      imageUrl: "mehfuz.jpg",
     },
     {
       name: "Nadish Acharya",
-      role: "Backend",
+      role: "AI Developer",
       bio: "A backend developer with expertise in AI, Nadish brings technical excellence to our projects.",
-      imageUrl: "/test2.png",
+      imageUrl: "nadish.jpg",
     },
     {
       name: "Roshan Chaudhary",
       role: "Frontend, UX Designer",
       bio: "Roshan combines creativity with user-centric design principles to create intuitive and beautiful interfaces.",
-      imageUrl: "/test1.png",
+      imageUrl: "Roshan.JPG",
     },
   ];
 
