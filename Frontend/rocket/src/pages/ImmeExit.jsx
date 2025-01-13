@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { format, parseISO } from "date-fns";
+import DashboardLayout from "../components/DashboardLayout";
 import apiClient from "../api/apiClient";
 
 const ImmeExit = () => {
@@ -72,6 +73,29 @@ const ImmeExit = () => {
     }
   };
 };
+
+if (error || !feeDetails) {
+  return (
+    <DashboardLayout>
+      <div className="max-w-3xl mx-auto pt-8">
+        <div className="bg-white shadow-md rounded-lg overflow-hidden">
+          <div className="p-6">
+            <h2 className="text-2xl font-bold text-red-600 mb-4">Error</h2>
+            <p className="mb-4">
+              {error || "No fee details available. Please try again."}
+            </p>
+            <button
+              onClick={() => navigate("/parking-lot")}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+              Return
+            </button>
+          </div>
+        </div>
+      </div>
+    </DashboardLayout>
+  );
+}
 
 return (
   <div className="max-w-3xl mx-auto pt-8">
