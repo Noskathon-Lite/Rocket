@@ -42,6 +42,7 @@ const HistoryPage = () => {
     }
   };
 
+  //Filtering by months
   const filteredRecords = records
     .filter((record) => {
       if (!record.entry_time) return false;
